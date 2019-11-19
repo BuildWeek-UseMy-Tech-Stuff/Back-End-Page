@@ -15,7 +15,7 @@ router.post('/register', (req, res) => {
 
     credentials.password = hashedPassword;
 
-    dbHelper.add(credentials)
+    dbHelper.addUser(credentials)
       .then(creds => {
         res.status(201).json(creds);
       })
@@ -29,7 +29,7 @@ router.post('/login', (req, res) => {
 
   let { username, password } = req.body;
 
-  dbHelper.findBy(username)
+  dbHelper.getUserByUsername(username)
     .then(user => {
 
       console.log("user? ", user);

@@ -59,16 +59,6 @@ router.get('/:id', authorized, (req, res) => {
 
 });
 
-router.get('/user/:id', authorized, (req, res) => {
-
-    dbHelper.getUserRentals(req.params.id)
-        .then(rentals => {
-            res.json({ rentals: rentals});
-        })
-        .catch(err => res.status(500).json({ error: err, message: "Error getting user rentals from DB. Make sure you included a valid ID in the request URL." }));
-
-});
-
 router.delete('/:id', authorized, (req, res) => {
 
     dbHelper.deleteRental(req.params.id)
