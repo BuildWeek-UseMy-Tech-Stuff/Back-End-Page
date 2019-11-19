@@ -3,7 +3,8 @@ var bodyParser = require('body-parser')
 var server = express()
 
 const authRouter = require('./auth/auth-router');
-const router = require('./routes/router');
+const rentalRouter = require('./routes/rentalRouter');
+const userRouter = require('./routes/userRouter');
 
 server.get('/', (req, res) => {
   res.send(`<h2>Welcome! Use My Tech Stuff API documentation <a href="https://github.com/BuildWeek-UseMy-Tech-Stuff/Back-End-Page/blob/master/README.md">here</a> </h2>`)
@@ -18,6 +19,8 @@ server.use(bodyParser.json())
 
 server.use('/api/', authRouter);
 
-server.use('/api/rentals/', router);
+server.use('/api/rentals', rentalRouter);
+
+server.use('/api/users', userRouter);
 
 module.exports = server;

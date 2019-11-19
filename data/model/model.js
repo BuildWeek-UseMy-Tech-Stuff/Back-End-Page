@@ -1,10 +1,11 @@
 const db = require('../dbConfig')
 
 module.exports = {
-  find,
-  findBy,
-  findById,
-  add,
+  getUsers,
+  getUserByID,
+  getUserByUsername,
+  addUser,
+  updateUser,
   getUsersAndRentals,
   addRental,
   rentItem,
@@ -16,7 +17,7 @@ module.exports = {
   updateRental
 };
 
-function find() {
+function getUsers() {
   return db("users");
 }
 
@@ -36,17 +37,27 @@ function getRental(id) {
   return db("rentals").where({ id: id }).first();
 }
 
-function findBy(user) {
-  return db("users").where({ username: user }).first();
-}
-
-function findById(id) {
+function getUserByID(id) {
   return db("users")
     .where({ id })
     .first();
 }
 
-function add(user) {
+function getUserByUsername(username) {
+  return db("users")
+    .where({ username })
+    .first();
+}
+
+function updateUser (user) {
+
+  return db("users").where({ id: user.id }).update(user).then(() => {
+    return getUserByID(user.id);
+  });
+
+}
+
+function addUser(user) {
   return db("users").insert(user);
 }
 
