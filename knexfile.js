@@ -7,6 +7,7 @@ module.exports = {
     connection: {
       filename: './data/tech.db3'
     },
+    useNullAsDefault: true,
     migrations: {
       directory: './data/migrations',
       tableName: 'knex_migrations',
