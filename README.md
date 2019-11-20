@@ -8,7 +8,7 @@ Base URL: tech-stuff-api.herokuapp.com
 | Operator | Endpoint | Purpose | Expected Body Data | Returns | Requires Header Token (Auth) |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 |  POST  |  /api/register  |  Registration  |  {username: "username" (unique, required), password: "password" (required), email: "email@email.com" (required), phone_number: "530-212-1800" (not required), location: "Somewhere" (not required)}  |  new user ID  |  No  |
-|  POST  |  /api/login  |  Logging in  |  {username: "username" (required), password: "password" (required)}  |  {message, token}  |  No  |
+|  POST  |  /api/login  |  Logging in  |  {username: "username" (required), password: "password" (required)}  |  {message, token, user_id}  |  No  |
 |  GET  |  /api/rentals  |  Getting array of all rentals from all users  |  None  |  Array of all rentals.  |  Yes  |
 |  GET  |  /api/rentals/:id  |  Getting a rental with specified ID  |  None  |  Rental with specified ID.  |  Yes  |
 |  GET  |  /api/users  |  Getting array of all users  |  None  |  Array of all user accounts.  |  Yes  |
