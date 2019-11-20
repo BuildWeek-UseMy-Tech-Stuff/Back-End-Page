@@ -18,6 +18,8 @@ exports.up = function (knex) {
 
         rentals.string('item_description', 400);
 
+        rentals.string('img_url', 800);
+
         rentals.string('category', 128);
 
         rentals.integer('rate');
