@@ -9,10 +9,6 @@ router.get('/', authorized, (req, res) => {
             let result = [];
             usersWithRentals.forEach((item) => {
                 delete item.password;
-                delete item.email;
-                delete item.phone_number;
-                delete item.location;
-                delete item.id;
                 result.push(item);//exclude sensitive info
             });
             res.json(result);
