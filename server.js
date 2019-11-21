@@ -1,10 +1,13 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var server = express()
+var cors = require('cors')
 
 const authRouter = require('./auth/auth-router');
 const rentalRouter = require('./routes/rentalRouter');
 const userRouter = require('./routes/userRouter');
+
+server.use(cors())
 
 server.get('/', (req, res) => {
   res.send(`<h2>Welcome! Use My Tech Stuff API documentation <a href="https://github.com/BuildWeek-UseMy-Tech-Stuff/Back-End-Page/blob/master/README.md">here</a> </h2>`)
