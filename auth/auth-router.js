@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
         res.status(201).json(creds);
       })
       .catch(error => {
-        res.status(500).json({ message: "Error while saving credentials to DB, make sure you provided the correct data for registration" });
+        res.status(500).json({ message: "Error while saving credentials to DB, make sure you provided the correct data for registration. Is username already in use?" });
       });
   });
 });
@@ -30,27 +30,51 @@ router.post('/login', (req, res) => {
   let { username, password } = req.body;
 
   dbHelper.getUserByUsername(username)
-    .then(user => {
+  .then(user => {
 
-      console.log("user? ", user);
-      if (user && bcrypt.compareSync(password, user.password)) {
-        console.log("bcrypt");
-        const token = generateToken(user);
+    console.log("user? ", user);
+    if (user && bcrypt.compareSync(password, user.password)) {
+      console.log("bcrypt");
+      const token = generateToken(user);
 
-        res.status(200).json({
-          message: `Welcome, ${user.username}!`,
-          token, // attach the token as part of the response
-          user_id: user.id
-        });
-      } else {
-        res.status(401).json({ message: 'Invalid Credentials' });
-      }
-    })
-    .catch(error => {
-      res.status(500).json({ message: "Error finding user with that username" });
-    });
+      res.status(200).json( {
+        message: `Welcome, ${user.username}!`,
+        token,
+        user_id: user.id
+      })
+    } else {
+      res.status(401).json({ message: 'Invalid Credentials' });
+    }
+  })
+  .catch(error => {
+    res.status(500).json({ message: "Error finding user with that username" });
+  });
 
 });
+
+// function logIn(res, username, password){
+  
+//   dbHelper.getUserByUsername(username)
+//     .then(user => {
+
+//       console.log("user? ", user);
+//       if (user && bcrypt.compareSync(password, user.password)) {
+//         console.log("bcrypt");
+//         const token = generateToken(user);
+
+//         return {
+//           message: `Welcome, ${user.username}!`,
+//           token,
+//           user_id: user.id
+//         }
+//       } else {
+//         res.status(401).json({ message: 'Invalid Credentials' });
+//       }
+//     })
+//     .catch(error => {
+//       res.status(500).json({ message: "Error finding user with that username" });
+//     });
+// }
 
 function generateToken(user) {
   const payload = {
