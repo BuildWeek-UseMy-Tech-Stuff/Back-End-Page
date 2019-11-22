@@ -14,6 +14,7 @@ Base URL: tech-stuff-api.herokuapp.com
 |  GET  |  /api/users  |  Getting array of all users  |  None  |  Array of all user accounts.  |  Yes  |
 |  GET  |  /api/users/:id  |  Getting user with specified ID  |  None  |  Object containing user with specified ID  |  Yes  |
 |  GET  |  /api/users/:userId/rentals  |  Getting rentals that are owned by user with specified ID  |  None  |  Array of all rentals owned by account with specified ID.  |  Yes  |
+|  GET  |  /api/users/:userId/rented  |  Getting rented items by user with specified ID  |  None  |  Array of all rented items by account with specified ID.  |  Yes  |
 |  POST  |  /api/rentals/create  |  Creating a new rental  |  { user_id: 1 (required), item_name: "name" (required), item_description: "description" (not required), category: "category" (not required), rate: 20.5 (not required) }, "img_url" (not required)  |  Object containing newly created rental.  |  Yes  |
 |  POST  |  /api/rentals/:id/rent  |  Setting rental with specified ID as rented  |  { id : 1 (required), rented_at: "date" (required), due_back: "date" (required), renter_id: 2 (required) }  |  Object containing newly rented rental ID.  |  Yes  |
 |  POST  |  /api/rentals/:id/return  |  Setting rental with specified ID as not rented  |  None  |  Object containing newly un-rented rental ID.  |  Yes  |
