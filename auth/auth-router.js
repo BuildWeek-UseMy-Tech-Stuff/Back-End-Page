@@ -13,11 +13,9 @@ router.post('/register', (req, res) => {
         res.status(500).json({message: "Error while hashing password", error: err});
     }
 
-    credentials.password = hashedPassword;
-
-    dbHelper.addUser(credentials)
+    dbHelper.addUser({...credentials, password: hashedPassword})
       .then(creds => {
-        res.status(201).json(creds);
+        res.status(201).json({...creds, token: generateToken(credentials)});
       })
       .catch(error => {
         res.status(500).json({ message: "Error while saving credentials to DB, make sure you provided the correct data for registration. Is username already in use?" });
