@@ -56,19 +56,19 @@ function getUserByUsername(username) {
 
 function updateUser (user) {
 
-  return db("users").where({ id: user.id }).update(user).then(() => {
+  return db("users").where({ id: user.id }).update(user, "id").then(() => {
     return getUserByID(user.id);
   });
 
 }
 
 function addUser(user) {
-  return db("users").insert(user);
+  return db("users").insert(user, "id");
 }
 
 function addRental(rental) {
   console.log("addRental");
-  return db("rentals").insert(rental).then((id) => {
+  return db("rentals").insert(rental, "id").then((id) => {
     return getRental(id[0]);
   });
 }
@@ -84,7 +84,7 @@ return getRental(rent.id).then((rental) => {
   rental.rented_at = rent.rented_at;
   rental.due_back = rent.due_back;
   rental.renter_id = rent.renter_id;
-  return db("rentals").where({ id: rent.id }).update(rental);
+  return db("rentals").where({ id: rent.id }).update(rental, "id");
 });
 }
 
@@ -93,13 +93,13 @@ function unrentItem(id) {
     rental.rented_at = null;
     rental.due_back = null;
     rental.renter_id = null;
-    return db("rentals").where({ id: id }).update(rental);
+    return db("rentals").where({ id: id }).update(rental, "id");
   });
   }
 
   function updateRental (rental) {
 
-      return db("rentals").where({ id: rental.id }).update(rental).then(() => {
+      return db("rentals").where({ id: rental.id }).update(rental, "id").then(() => {
         return getRental(rental.id);
       });
 
