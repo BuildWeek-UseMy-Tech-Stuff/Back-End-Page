@@ -13,6 +13,16 @@ router.get('/:id/rentals', authorized, (req, res) => {
 
 });
 
+router.get('/:id/rented', authorized, (req, res) => {
+
+    dbHelper.getUserRented(req.params.id)
+        .then(rented => {
+            res.json({ rented: rented });
+        })
+        .catch(err => res.status(500).json({ error: err, message: "Error getting user's rented items from DB. Make sure you included a valid ID in the request URL." }));
+
+});
+
 router.get('/', authorized, (req, res) => {
 
     dbHelper.getUsers()

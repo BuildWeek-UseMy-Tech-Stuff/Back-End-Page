@@ -14,7 +14,8 @@ module.exports = {
   getRental,
   getRentals,
   getUserRentals,
-  updateRental
+  updateRental,
+  getUserRented
 };
 
 function getUsers() {
@@ -31,6 +32,10 @@ function getRentals() {
 
 function getUserRentals(id) {
   return db("rentals").where({user_id: id});
+}
+
+function getUserRented(id) {
+  return db("rentals").where({renter_id: id});
 }
 
 function getRental(id) {
