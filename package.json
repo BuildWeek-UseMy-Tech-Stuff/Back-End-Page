@@ -8,6 +8,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "cross-env": "^6.0.3",
     "express": "^4.17.1",
     "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",
@@ -17,7 +18,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env DB_ENV=testing jest --watch",
     "start": "set NODE_ENV=dev&& node index.js"
   },
   "repository": {
